@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Twerk</title>
-    </head>
-    <body>
-        <div class="content">
-            <a href="https://www.instagram.com/juguito.de.twerk/?utm_source=ig_web_button_share_sheet&igshid=OGQ5ZDc2ODk2ZA==">Juguito de Twerk</a>
-            <p>HOLA :D</p>
-        </div>
-    </body>
-    
-    
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrenador de Twerk Freestyle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Entrenador de Twerk Freestyle</h1>
+
+  <div class="steps-container">
+    <label><input type="checkbox" value="Up"> Up</label>
+    <label><input type="checkbox" value="Down"> Down</label>
+    <label><input type="checkbox" value="Tiktok"> Tiktok</label>
+    <label><input type="checkbox" value="Whine"> Whine</label>
+    <label><input type="checkbox" value="Bubble"> Bubble</label>
+    <label><input type="checkbox" value="Jiggle"> Jiggle</label>
+  </div>
+
+  <label>
+    Cantidad de pasos:
+    <input type="number" id="stepCount" min="1" max="50" value="4">
+  </label>
+  <br><br>
+  <label>
+    Intervalo (segundos):
+    <input type="number" id="stepDelay" min="1" max="10" value="2">
+  </label>
+  <br><br>
+  <label>
+    <input type="checkbox" id="memoryMode">
+    Activar modo memoria
+  </label>
+  <br><br>
+
+  <button id="startBtn" onclick="generateAndStart()">Iniciar secuencia</button>
+
+  <div id="output"></div>
+  <div id="currentStep"></div>
+  <div id="gifContainer"></div>
+  <div class="memory-options" id="memoryButtons" style="display:none;"></div>
+  <div id="memoryResult"></div>
+
+  <audio id="beatSound" src="beat.mp3" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
 </html>
