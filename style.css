@@ -1,81 +1,119 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background: #fff8f0;
-  color: #333;
-  margin: 20px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
-h1 {
-  text-align: center;
-}
-.steps-container, .memory-options {
+
+.container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
-label {
+
+.sidebar {
+  width: 250px;
+  background-color: #f3f3f3;
+  padding: 15px;
+  overflow-y: auto;
+  position: relative;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+#panelArrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ff69b4;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1100;
+  transition: left 0.3s ease;
+}
+
+.sidebar.closed ~ #panelArrow {
+  left: 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.sidebar.open ~ #panelArrow {
+  left: 250px;
+  border-radius: 0 5px 5px 0;
+}
+
+.main {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
+  padding: 80px 20px 20px;
+  position: relative;
+  overflow-y: auto;
 }
-input[type="number"] {
-  width: 60px;
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff8f0;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 500;
 }
-#output, #currentStep, #memoryResult {
+
+#startBtn {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff69b4;
+  color: white;
+  cursor: pointer;
+}
+
+#sequenceOutput {
   font-size: 1.5em;
   text-align: center;
   margin-top: 20px;
-  padding: 15px;
-  background-color: #fffbe0;
-  border: 2px solid #f0c;
-  border-radius: 12px;
+  white-space: pre-line;
 }
-#currentStep {
-  font-size: 2.3em;
-  font-weight: bold;
-  background-color: #ffebf0;
-}
-#gifContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
+
 #gifContainer img {
   max-height: 200px;
-  border-radius: 10px;
+  margin-top: 15px;
 }
-.memory-options button {
-  padding: 10px 16px;
-  font-size: 1em;
-  border-radius: 8px;
-  border: none;
-  background-color: #ffb6c1;
+
+.option-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.selectable {
+  padding: 6px 10px;
+  background-color: #ccc;
+  border-radius: 4px;
   cursor: pointer;
+  user-select: none;
 }
-.memory-options button:hover {
-  background-color: #ffa1b0;
-}
-button#startBtn {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 1.2em;
-  background-color: #ff69b4;
+
+.selectable.selected {
+  background-color: #b34ee9;
   color: white;
-  border: none;
-  border-radius: 8px;
-  margin-top: 10px;
-  cursor: pointer;
 }
-button#startBtn:hover {
-  background-color: #ff1493;
-}
-@media screen and (max-width: 500px) {
-  h1 { font-size: 1.4em; }
-  #currentStep { font-size: 2em; }
-  #gifContainer img { max-height: 150px; }
+
+.hidden {
+  display: none;
 }
