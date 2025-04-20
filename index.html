@@ -3,44 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entrenador de Twerk Freestyle</title>
+  <title>Freestyle Twerk Trainer</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Entrenador de Twerk Freestyle</h1>
+  <div class="container">
+    <!-- Panel lateral -->
+    <div class="sidebar open" id="configPanel">
+      <h2>Opciones</h2>
+      <div><label><strong>Pasos:</strong></label><br>
+        <div class="option-group" id="stepsGroup">
+          <div class="selectable" data-type="step" data-value="up">Up</div>
+          <div class="selectable" data-type="step" data-value="down">Down</div>
+          <div class="selectable" data-type="step" data-value="whine">Whine</div>
+          <div class="selectable" data-type="step" data-value="jiggle">Jiggle</div>
+          <div class="selectable" data-type="step" data-value="bubble">Bubble</div>
+          <div class="selectable" data-type="step" data-value="galop">Galop</div>
+          <div class="selectable" data-type="step" data-value="tiktok">Tiktok</div>
+          <div class="selectable" data-type="step" data-value="bootyclap">Bootyclap</div>
+        </div>
+      </div>
 
-  <div class="steps-container">
-    <label><input type="checkbox" value="Up"> Up</label>
-    <label><input type="checkbox" value="Down"> Down</label>
-    <label><input type="checkbox" value="Tiktok"> Tiktok</label>
-    <label><input type="checkbox" value="Whine"> Whine</label>
-    <label><input type="checkbox" value="Bubble"> Bubble</label>
-    <label><input type="checkbox" value="Jiggle"> Jiggle</label>
+      <hr>
+      <label><input type="checkbox" id="useLevels"> Usar niveles</label>
+      <div id="levelsOptions" class="option-group hidden">
+        <div class="selectable" data-type="level" data-value="alto">Alto</div>
+        <div class="selectable" data-type="level" data-value="medio">Medio</div>
+        <div class="selectable" data-type="level" data-value="bajo">Bajo</div>
+        <div class="selectable" data-type="level" data-value="cuclillas">Cuclillas</div>
+      </div>
+
+      <hr>
+      <label><input type="checkbox" id="useVariations"> Usar variaciones</label>
+      <div id="variationOptions" class="option-group hidden">
+        <div class="selectable" data-type="variation" data-value="brazos">Brazos</div>
+        <div class="selectable" data-type="variation" data-value="piernas">Piernas</div>
+        <div class="selectable" data-type="variation" data-value="frente">Frente</div>
+        <div class="selectable" data-type="variation" data-value="torso">Torso</div>
+        <div class="selectable" data-type="variation" data-value="manos">Manos</div>
+        <div class="selectable" data-type="variation" data-value="pies">Pies</div>
+        <div class="selectable" data-type="variation" data-value="cabeza">Cabeza</div>
+      </div>
+
+      <hr>
+      <label><input type="checkbox" id="combineSteps"> Combinar pasos</label><br>
+      <label><input type="checkbox" id="useConsigna"> Incluir consigna</label><br><br>
+      <label>
+        Largo de secuencia:
+        <input type="number" id="seqLength" min="1" max="30" value="6">
+      </label>
+    </div>
+
+    <!-- Flecha siempre visible -->
+    <div id="panelArrow">❮</div>
+
+    <!-- Panel principal -->
+    <div class="main">
+      <div class="top-bar">
+        <button id="startBtn" onclick="generateSequence()">Iniciar secuencia</button>
+      </div>
+      <div id="sequenceOutput"></div>
+      <div id="gifContainer"></div>
+    </div>
   </div>
-
-  <label>
-    Cantidad de pasos:
-    <input type="number" id="stepCount" min="1" max="50" value="4">
-  </label>
-  <br><br>
-  <label>
-    Intervalo (segundos):
-    <input type="number" id="stepDelay" min="1" max="10" value="2">
-  </label>
-  <br><br>
-  <label>
-    <input type="checkbox" id="memoryMode">
-    Activar modo memoria
-  </label>
-  <br><br>
-
-  <button id="startBtn" onclick="generateAndStart()">Iniciar secuencia</button>
-
-  <div id="output"></div>
-  <div id="currentStep"></div>
-  <div id="gifContainer"></div>
-  <div class="memory-options" id="memoryButtons" style="display:none;"></div>
-  <div id="memoryResult"></div>
 
   <audio id="beatSound" src="beat.mp3" preload="auto"></audio>
   <script src="script.js"></script>
